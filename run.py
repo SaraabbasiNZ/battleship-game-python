@@ -31,3 +31,18 @@ class Board:
                 row = random.randint(0, self.board_size - 1)
                 col = random.randint(0, self.board_size - 1)
             board[row][col] = "@"
+
+    def validate_input(self, row, col):
+        # Check if the input coordinates are within the valid range
+        return 0 <= row < self.board_size and 0 <= col < self.board_size
+
+    def make_shot(self, board, row, col):
+        # Process player's or computer's shot on the board & update accordingly
+        if board[row][col] == '@':
+            print("Hit!")
+            board[row][col] = 'X'
+            return True
+        else:
+            print("Miss!")
+            board[row][col] = 'O'
+            return False
