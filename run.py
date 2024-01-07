@@ -21,3 +21,13 @@ class Board:
         print("   0 1 2 3 4")
         for i, row in enumerate(board):
             print(f"{i} |{'|'.join(row)}|")
+
+    def place_ships(self, board):
+        # Randomly place ships on the board, ensuring no overlap
+        for _ in range(self.ships):
+            row = random.randint(0, self.board_size - 1)
+            col = random.randint(0, self.board_size - 1)
+            while board[row][col] == "@":
+                row = random.randint(0, self.board_size - 1)
+                col = random.randint(0, self.board_size - 1)
+            board[row][col] = "@"
