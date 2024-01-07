@@ -46,3 +46,17 @@ class Board:
             print("Miss!")
             board[row][col] = 'O'
             return False
+
+    def display_instructions(self):
+        # Display comprehensive game instructions and information
+        print("\nBattleship Game\n")
+        print("How to play:")
+        print("1. The game consists of two boards, one for each player.")
+        print("2. The boards marked with the numbers 0 - 4.")
+        print("3. You have a total of 20 turns to sink 3 hidden ships.")
+        print("4. Guess a row and a column between 0 and 4.")
+        print("5. If you HIT a ship, you will see 'X'.")
+        print("6. If you MISS a ship, you will see 'O'.")
+        print("7. Your ships is displayed as '@'.")
+        print("8. Type 'exit' to quit the game at any time.")
+        print("\nLet the battle begin!\n")
