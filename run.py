@@ -123,3 +123,8 @@ class Board:
             print(f"\nCongratulations, {player_name}! You sunk all the ships!")
         else:
             print("\nSorry, better luck next time. The computer wins!")
+
+
+if __name__ == "__main__":
+    game = Board()
+    game.play_game()
