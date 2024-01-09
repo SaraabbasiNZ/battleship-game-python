@@ -34,6 +34,9 @@ class Board:
         # Display the game board, including player's and computer's boards
         print("   0 1 2 3 4")
         for i, row in enumerate(board):
+            if not is_player:
+                # If it's the computer's board, hide the ships
+                row = [" " if cell == "@" else cell for cell in row]
             print(f"{i} |{'|'.join(row)}|")
 
     def place_ships(self, board):
