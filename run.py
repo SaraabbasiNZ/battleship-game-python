@@ -7,14 +7,28 @@ class Board:
         self.board_size = 5
         self.ship_size = 3
         self.player_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.computer_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.player_turns = 20
         self.computer_turns = 20
         self.ships = 3
+
+    def get_username(self):
+        input_is_valid = False
+        username = ""
+        while input_is_valid is False:
+            user_input = input("Enter your username: ")
+            if len(user_input) < 4:
+                print("Please enter a minimun of 4 chars")
+            else:
+                input_is_valid = True
+                username = user_input
+        return username
 
     def display_board(self, board, is_player=True):
         # Display the game board, including player's and computer's boards
@@ -64,7 +78,7 @@ class Board:
     def play_game(self):
         # Main game loop where players take turns and outcomes are determined
         self.display_instructions()
-        player_name = input("Enter your username: ")
+        player_name = self.get_username()
 
         self.place_ships(self.player_board)
         self.place_ships(self.computer_board)
