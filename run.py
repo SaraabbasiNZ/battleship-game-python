@@ -25,7 +25,7 @@ class Board:
         while input_is_valid is False:
             user_input = input("Enter your username: ")
             if len(user_input) < 4:
-                print("Please enter a minimun of 4 chars")
+                print("Please enter a minimum of 4 chars")
             else:
                 input_is_valid = True
                 username = user_input
@@ -75,7 +75,7 @@ class Board:
         print("4. Guess a row and a column between 0 and 4.")
         print("5. If you HIT a ship, you will see 'X'.")
         print("6. If you MISS a ship, you will see 'O'.")
-        print("7. Your ships is displayed as '@'.")
+        print("7. Your ships are displayed as '@'.")
         print("8. Type 'exit' to quit the game at any time.")
         print("\nLet the battle begin!\n")
 
@@ -87,49 +87,79 @@ class Board:
         self.place_ships(self.player_board, self.player_ships)
         self.place_ships(self.computer_board, self.computer_ships)
 
-        while self.player_turns > 0 and self.computer_turns > 0 and self.player_ships > 0 and self.computer_ships > 0:
+        player_guessed_coordinates = set()
+        computer_guessed_coordinates = set()
+
+        while (
+            self.player_turns > 0
+            and self.computer_turns > 0
+            and self.player_ships > 0
+            and self.computer_ships > 0
+        ):
             # Player's turn
             print(f"\n{player_name}'s Board:")
             self.display_board(self.player_board)
 
-            row_input = input("Enter row (0-4) or type 'exit' to quit: ")
+            while True:
+                row_input = input("Enter row (0-4) or type 'exit' to quit: ")
+
+                if row_input.lower() == "exit":
+                    break
+
+                col_input = input("Enter column (0-4): ")
+
+                try:
+                    row = int(row_input)
+                    col = int(col_input)
+
+                    if not self.validate_input(row, col):
+                        print("Invalid coordinates. Try again.")
+                        continue
+
+                    if (row, col) in player_guessed_coordinates:
+                        print("You already tried this coordinate. Try again.")
+                        continue
+
+                    player_guessed_coordinates.add((row, col))
+
+                    player_hit = self.make_shot(self.computer_board, row, col)
+                    if player_hit:
+                        self.computer_ships -= 1
+
+                    break
+
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+
             if row_input.lower() == "exit":
                 break
 
-            col_input = input("Enter column (0-4): ")
+            # Computer's turn
+            print("\nComputer's Board:")
+            self.display_board(self.computer_board, is_player=False)
 
-            try:
-                row = int(row_input)
-                col = int(col_input)
-
-                if not self.validate_input(row, col):
-                    print("Invalid coordinates. Try again.")
-                    continue
-
-                player_hit = self.make_shot(self.computer_board, row, col)
-                if player_hit:
-                    self.computer_ships -= 1
-
-                # Computer's turn
-                print("\nComputer's Board:")
-                self.display_board(self.computer_board, is_player=False)
-
+            while True:
                 comp_row = random.randint(0, self.board_size - 1)
                 comp_col = random.randint(0, self.board_size - 1)
+
+                if (comp_row, comp_col) in computer_guessed_coordinates:
+                    continue
+
+                computer_guessed_coordinates.add((comp_row, comp_col))
+
                 comp_hit = self.make_shot(self.player_board, comp_row, comp_col)
 
                 if comp_hit:
                     self.player_ships -= 1
 
-                self.player_turns -= 1
-                self.computer_turns -= 1
+                break
 
-                print(
-                    f"\nTurns left - {player_name}: {self.player_turns}, Computer: {self.computer_turns}"
-                )
+            self.player_turns -= 1
+            self.computer_turns -= 1
 
-            except ValueError:
-                print("Invalid input. Please enter a number.")
+            print(
+                f"\nTurns left - {player_name}: {self.player_turns}, Computer: {self.computer_turns}"
+            )
 
         print("\nGame Over!")
         print(f"{player_name}'s Board:")
