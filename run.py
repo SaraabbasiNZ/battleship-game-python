@@ -16,7 +16,8 @@ class Board:
         ]
         self.player_turns = 20
         self.computer_turns = 20
-        self.ships = 3
+        self.player_ships = 3  # Track remaining ships for each player
+        self.computer_ships = 3
 
     def get_username(self):
         input_is_valid = False
@@ -39,9 +40,9 @@ class Board:
                 row = [" " if cell == "@" else cell for cell in row]
             print(f"{i} |{'|'.join(row)}|")
 
-    def place_ships(self, board):
+    def place_ships(self, board, ships):
         # Randomly place ships on the board, ensuring no overlap
-        for _ in range(self.ships):
+        for _ in range(ships):
             row = random.randint(0, self.board_size - 1)
             col = random.randint(0, self.board_size - 1)
             while board[row][col] == "@":
@@ -83,10 +84,10 @@ class Board:
         self.display_instructions()
         player_name = self.get_username()
 
-        self.place_ships(self.player_board)
-        self.place_ships(self.computer_board)
+        self.place_ships(self.player_board, self.player_ships)
+        self.place_ships(self.computer_board, self.computer_ships)
 
-        while self.player_turns > 0 and self.computer_turns > 0 and self.ships > 0:
+        while self.player_turns > 0 and self.computer_turns > 0 and self.player_ships > 0 and self.computer_ships > 0:
             # Player's turn
             print(f"\n{player_name}'s Board:")
             self.display_board(self.player_board)
@@ -107,7 +108,7 @@ class Board:
 
                 player_hit = self.make_shot(self.computer_board, row, col)
                 if player_hit:
-                    self.ships -= 1
+                    self.computer_ships -= 1
 
                 # Computer's turn
                 print("\nComputer's Board:")
@@ -118,7 +119,7 @@ class Board:
                 comp_hit = self.make_shot(self.player_board, comp_row, comp_col)
 
                 if comp_hit:
-                    self.ships -= 1
+                    self.player_ships -= 1
 
                 self.player_turns -= 1
                 self.computer_turns -= 1
@@ -136,10 +137,12 @@ class Board:
         print("\nComputer's Board:")
         self.display_board(self.computer_board, is_player=False)
 
-        if self.ships == 0:
-            print(f"\nCongratulations, {player_name}! You sunk all the ships!")
+        if self.player_ships == 0:
+            print("\nSorry, better luck next time. The computer sunk all your ships!")
+        elif self.computer_ships == 0:
+            print(f"\nCongratulations, {player_name}! You sunk all the computer's ships!")
         else:
-            print("\nSorry, better luck next time. The computer wins!")
+            print("\nIt's a draw! Both players have ships remaining.")
 
 
 if __name__ == "__main__":
