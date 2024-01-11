@@ -185,7 +185,13 @@ You sunk all the computer's ships!"""
             else:
                 print("\nIt's a draw! Both players have ships remaining.")
 
-            play_again = input("\nDo you want to play again? (yes/no): ")
+            while True:
+                play_again = input("\nDo you want to play again? (yes/no): ")
+                if play_again.lower() in ["yes", "no"]:
+                    break
+                else:
+                    print("Invalid input. Please enter 'yes' or 'no'.")
+
             if play_again.lower() != "yes":
                 break
             else:
