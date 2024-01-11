@@ -7,10 +7,12 @@ class Board:
         self.board_size = 5
         self.ship_size = 3
         self.player_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.computer_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.player_turns = 20
         self.computer_turns = 20
@@ -100,8 +102,9 @@ class Board:
                 self.display_board(self.player_board)
 
                 while True:
-                    row_input = input("Enter row (0-4) or type 'exit' to quit: ")
-
+                    error_m = "You already tried this coordinate. Try again."
+                    message = "Enter row (0-4) or type 'exit' to quit: "
+                    row_input = input(message)
                     if row_input.lower() == "exit":
                         break
 
@@ -116,12 +119,13 @@ class Board:
                             continue
 
                         if (row, col) in player_guessed_coordinates:
-                            print("You already tried this coordinate. Try again.")
+                            print(error_m)
                             continue
 
                         player_guessed_coordinates.add((row, col))
 
-                        player_hit = self.make_shot(self.computer_board, row, col)
+                        player_hit = self.make_shot(self.computer_board,
+                                                    row, col)
                         if player_hit:
                             self.computer_ships -= 1
 
@@ -146,7 +150,8 @@ class Board:
 
                     computer_guessed_coordinates.add((comp_row, comp_col))
 
-                    comp_hit = self.make_shot(self.player_board, comp_row, comp_col)
+                    comp_hit = self.make_shot(self.player_board,
+                                              comp_row, comp_col)
 
                     if comp_hit:
                         self.player_ships -= 1
@@ -157,7 +162,8 @@ class Board:
                 self.computer_turns -= 1
 
                 print(
-                    f"\nTurns left - {player_name}: {self.player_turns}, Computer: {self.computer_turns}"
+                    f"""\nTurns left - {player_name}: {self.player_turns}
+             Computer: {self.computer_turns}"""
                 )
 
             print("\nGame Over!")
@@ -168,11 +174,13 @@ class Board:
 
             if self.player_ships == 0:
                 print(
-                    "\nSorry, better luck next time. The computer sunk all your ships!"
+                    """\nSorry, better luck next time.
+The computer sunk all your ships!"""
                 )
             elif self.computer_ships == 0:
                 print(
-                    f"\nCongratulations, {player_name}! You sunk all the computer's ships!"
+                    f"""\nCongratulations, {player_name}!
+You sunk all the computer's ships!"""
                 )
             else:
                 print("\nIt's a draw! Both players have ships remaining.")
@@ -187,10 +195,12 @@ class Board:
     def reset_game(self):
         # Reset game parameters for a new round
         self.player_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.computer_board = [
-            [" " for _ in range(self.board_size)] for _ in range(self.board_size)
+            [" " for _ in range(self.board_size)]
+            for _ in range(self.board_size)
         ]
         self.player_turns = 20
         self.computer_turns = 20
