@@ -6,7 +6,7 @@ The game runs in the Code Institute's mock terminal on Heroku.
 
 The live link can be found here: [The Battleship Game](https://battleship-game-python-25e9a01fc0e7.herokuapp.com/).
 
-![Battleship - Am I Responsive]()
+![Battleship - Am I Responsive](images/am-i-responsive.png)
 
 
 ## How to play
@@ -37,7 +37,7 @@ To make sure I knew exactly how the game would work, I made a flowchart - kind o
 
 It was super useful, especially when I needed to check if the player's input was valid. The flowchart guided me in deciding what functions to create and how these functions would work together. Even though the final game might have some differences, this flowchart was a handy tool to visualize how the game would be structured.
 
-![Image of my flowchart]()
+![Image of my flowchart](images/battleship-game-flowchart.png)
 
 ## Features
 
@@ -47,7 +47,7 @@ It was super useful, especially when I needed to check if the player's input was
 - Clearly explain how to play the game, guiding players through the rules and steps.
 - Ask the player to enter their username, making them feel involved and personalizing their gaming experience.
 
-![Screenshot of the game]()
+![Screenshot of the game](images/battleship-game-screenshot.png)
 
 ### Game Board
   #### Battlefields
@@ -58,23 +58,23 @@ It was super useful, especially when I needed to check if the player's input was
     - First, ask them to pick a row.
     - Then, ask them to pick a column.
 
-![Board]()
+![Board](images/battleship-board.png)
 
 ### The Game Score
 - Keep track of whether the player or the computer successfully hit a ship or missed.
 - Show the scores to let players know how well they are doing in the game.
 - After each move, update the game boards to reflect the choices made by the player or the computer, making the progress visible.
 
-![Scores]()
+![Scores](images/battleship-scores.png)
 
 ### Input validation
 - player should choose a number only between 0 and 4!
 
-![Invalid input]()
+![Invalid input](images/battleship-invalid-input.png)
 
 - Player cannot guess a coordinate twice
   
-![Repeated Coordinate]()
+![Repeated Coordinate](images/battleship-repeated-coordinate.png)
 
 ### End of the Game
 - Declare the winner of the game by making an announcement.
@@ -83,7 +83,7 @@ It was super useful, especially when I needed to check if the player's input was
   - If they say yes, restart the game for another round.
   - If they say no, thank them for playing the game.
   
-![The End]()
+![The End](images/battleship-endgame.png)
 
 ### Future Features
 - Make the game look even better by adding more cool and colorful pictures. 
@@ -122,7 +122,7 @@ The if __name__ == "__main__": block creates an instance of the Board class and 
 
 ## Testing 
 
-![Screenshot of PEP8 linter]()
+![Screenshot of PEP8 linter](images/battleship-pep3-test.png)
 - The game has been tested through the [PEP8](https://pep8ci.herokuapp.com/#) linter and had no errors. 
 - The players inputs have been manually tested on the Code Institute Heroku terminal and is working without any errors:
   - Invalid Username
@@ -141,7 +141,7 @@ When I initially made this game, I realized that the computer's ships were not h
 ### Solution:
 I fixed it by one line code:
 
-![Bug]()
+![Bug](images/battleship-debug.png)
 
 
 ## Deployment
