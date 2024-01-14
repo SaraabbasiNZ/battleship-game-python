@@ -18,6 +18,8 @@ class Board:
         self.computer_turns = 20
         self.player_ships = 3  # Track remaining ships for each player
         self.computer_ships = 3
+        self.player_score = 0  # Track the player's score
+        self.computer_score = 0  # Track the computer's score
 
     def get_username(self):
         input_is_valid = False
@@ -129,6 +131,7 @@ class Board:
                                                     row, col)
                         if player_hit:
                             self.computer_ships -= 1
+                            self.player_score += 1  # Update player's score
 
                         break
 
@@ -156,6 +159,7 @@ class Board:
 
                     if comp_hit:
                         self.player_ships -= 1
+                        self.computer_score += 1  # Update computer's score
 
                     break
 
@@ -163,8 +167,11 @@ class Board:
                 self.computer_turns -= 1
 
                 print(
-                    f"""\nTurns left - {player_name}: {self.player_turns}
-             Computer: {self.computer_turns}"""
+                    f"""\nTurns left:
+{player_name} = {self.player_turns}, Computer = {self.computer_turns}
+
+Scores:
+{player_name} = {self.player_score}, Computer = {self.computer_score}"""
                 )
 
             print("\nGame Over!")
@@ -185,6 +192,10 @@ You sunk all the computer's ships!"""
                 )
             else:
                 print("\nIt's a draw! Both players have ships remaining.")
+
+            # Display scores
+            print(f"""\nScores:
+{player_name} = {self.player_score}, Computer: {self.computer_score}""")
 
             while True:
                 play_again = input("\nDo you want to play again? (yes/no): ")
@@ -214,6 +225,8 @@ You sunk all the computer's ships!"""
         self.computer_turns = 20
         self.player_ships = 3
         self.computer_ships = 3
+        self.player_score = 0  # Reset player's score
+        self.computer_score = 0  # Reset computer's score
 
 
 if __name__ == "__main__":
