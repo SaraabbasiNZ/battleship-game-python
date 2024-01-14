@@ -60,7 +60,7 @@ It was super useful, especially when I needed to check if the player's input was
 
 ![Board]()
 
-### The game Score
+### The Game Score
 - Keep track of whether the player or the computer successfully hit a ship or missed.
 - Show the scores to let players know how well they are doing in the game.
 - After each move, update the game boards to reflect the choices made by the player or the computer, making the progress visible.
