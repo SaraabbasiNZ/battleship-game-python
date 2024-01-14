@@ -193,6 +193,7 @@ You sunk all the computer's ships!"""
                     print("Invalid input. Please enter 'yes' or 'no'.")
 
             if play_again.lower() != "yes":
+                print("Thank you for playing! Goodbye.")
                 break
             else:
                 # Reset the game for a new round
