@@ -68,6 +68,7 @@ class Board:
     def display_instructions(self):
         # Display comprehensive game instructions and information
         print("\nBattleship Game\n")
+        print("\nWelcome to Battleship! Sink ships, seize victory!\n")
         print("How to play:")
         print("1. The game consists of two boards, one for each player.")
         print("2. The boards marked with the numbers 0 - 4.")
