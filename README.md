@@ -106,6 +106,7 @@ In this game, a class named Board is created to represent the game board and man
 - `player_board` and `computer_board`: Represent the game boards for the player and computer, initialized as 5x5 grids filled with empty spaces.
 - `player_turns` and `computer_turns`: Keep track of the remaining turns for each player (both set to 20 initially).
 - `player_ships` and `computer_ships`: Track the remaining number of ships for each player (both set to 3 initially).
+- `player_score`: Cumulative points for hitting computer ships; `computer_score`: Cumulative points for hitting player ships.
 
 ### Methods:
 - `get_username()`: Prompts the user to input their username, ensuring it is at least 4 characters long.
