@@ -56,14 +56,14 @@ class Board:
         # Check if the input coordinates are within the valid range
         return 0 <= row < self.board_size and 0 <= col < self.board_size
 
-    def make_shot(self, board, row, col):
+    def make_shot(self, board, row, col, player):
         # Process player's or computer's shot on the board & update accordingly
         if board[row][col] == "@":
-            print("Hit!")
+            print(f"\n{player} Hits!")
             board[row][col] = "X"
             return True
         else:
-            print("Miss!")
+            print(f"\n{player} Misses!")
             board[row][col] = "O"
             return False
 
@@ -100,9 +100,10 @@ class Board:
                 and self.player_ships > 0
                 and self.computer_ships > 0
             ):
-                # Player's turn
                 print(f"\n{player_name}'s Board:")
                 self.display_board(self.player_board)
+                print("\nComputer's Board:")
+                self.display_board(self.computer_board, False)
 
                 while True:
                     error_m = "You already tried this coordinate. Try again."
@@ -128,7 +129,7 @@ class Board:
                         player_guessed_coordinates.add((row, col))
 
                         player_hit = self.make_shot(self.computer_board,
-                                                    row, col)
+                                                    row, col, player_name)
                         if player_hit:
                             self.computer_ships -= 1
                             self.player_score += 1  # Update player's score
@@ -141,10 +142,6 @@ class Board:
                 if row_input.lower() == "exit":
                     break
 
-                # Computer's turn
-                print("\nComputer's Board:")
-                self.display_board(self.computer_board, is_player=False)
-
                 while True:
                     comp_row = random.randint(0, self.board_size - 1)
                     comp_col = random.randint(0, self.board_size - 1)
@@ -155,7 +152,7 @@ class Board:
                     computer_guessed_coordinates.add((comp_row, comp_col))
 
                     comp_hit = self.make_shot(self.player_board,
-                                              comp_row, comp_col)
+                                              comp_row, comp_col, 'Computer')
 
                     if comp_hit:
                         self.player_ships -= 1
